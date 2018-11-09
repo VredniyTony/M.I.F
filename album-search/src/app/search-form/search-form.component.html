@@ -1,6 +1,8 @@
 <form>
-  <input type="text" name="artist" placeholder="Artist">
-  <input type="button" name="submit" value="Submit" (click)="search()">
+  <input type="text" placeholder="Artist" id="artist_input">
+  <input type="button" value="Submit" (click)="search()">
 </form>
-<div id="result"></div>
+<div id="result" [innerHtml]="result">
+  <h1>{{value}}</h1>
+</div>
 <router-outlet></router-outlet>
