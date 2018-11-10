@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {InjectorInstance} from '../app.module';
+import { InjectorInstance } from '../app.module';
+import { Observable } from 'rxjs/Observable';
+import { forkJoin } from 'rxjs/observable/forkJoin'
 
 @Component({
   selector: 'app-search-form',
@@ -27,13 +29,13 @@ export class SearchFormComponent {
       .replace(" ", "+");
       
     let search_album = new albums(artist); 
-    search_album.get_json();
+    search_album.set_json();
     search_album.itunes();
-    // search_album.deezer();
+    search_album.deezer();
   }
 }
 
-class albums {
+export class albums {
   private artist : string;
 
   private url = {
@@ -58,16 +60,23 @@ class albums {
     this.http = InjectorInstance.get<HttpClient>(HttpClient);
   }
 
-  get_json() {
-    this.http.get(this.url.itunes + "/search?term=" + this.artist + "&entity=album")
-    .subscribe(json => {
-      this.data.itunes = json;
-      console.log(json);
-    });
+  get_json(): Observable<any[]> {
+      const itunes = this.http.get(this.url.itunes + "/search?term=" + this.artist + "&entity=album");
+      const deezer = this.http.get(this.url.deezer + "/search/album?q=" + this.artist);
+      return forkJoin([itunes, deezer]);
+  }
+
+  async set_json(){
+    await this.get_json().subscribe(responseList => {
+      this.data.itunes = responseList[0];
+      console.log(responseList[0]);
+      this.data.deezer = responseList[1];
+      console.log(responseList[1]);
+    })
   }
 
   itunes() {
-    console.log(this.data.itunes);
+      console.log(this.data.itunes);
   }
   
   deezer() {
