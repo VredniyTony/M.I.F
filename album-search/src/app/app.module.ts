@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import {Injector} from '@angular/core';
+
+export let InjectorInstance: Injector;
 
 @NgModule({
   declarations: [
@@ -20,4 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(private injector: Injector) 
+  {
+    InjectorInstance = this.injector;
+  }
+}
