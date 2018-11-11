@@ -9,9 +9,10 @@ import { forkJoin } from "rxjs/observable/forkJoin";
   styleUrls: ['./search-form.component.scss'],
 })
 
-export class SearchFormComponent implements OnInit {
+export class SearchFormComponent {
 
   private artist : string;
+  public display;
   private url = {
     itunes : "https://itunes.apple.com",
     deezer : "https://cors-anywhere.herokuapp.com/https://api.deezer.com"
@@ -27,8 +28,9 @@ export class SearchFormComponent implements OnInit {
     let self = this;
     this.artist = artist.value;
      this.setJson().then(function() {
-      self.itunes();
-      self.deezer();
+      self.display = true;
+      console.log(self.data.itunes);
+      console.log(self.data.deezer);  
      });
    }
 
@@ -46,22 +48,6 @@ export class SearchFormComponent implements OnInit {
         res(); 
         })
     });
-  }
-
-  ngOnInit() {
-  }
-
-  itunes() {
-    console.log(this.data.itunes)
-    // this.data.itunes.results.map(cur => {
-    //   this.draw(this.result_field.itunes, cur.collectionViewUrl, cur.collectionName)
-    // });
-  }
-  deezer() {
-    console.log(this.data.deezer)   
-    // this.data.deezer.data.map(cur => {
-    //   this.draw(this.result_field.deezer, cur.cover, cur.title)
-    // })
   }
 }
 

@@ -1,17 +1,18 @@
 <form>
   <input type="text" placeholder="Artist" id="artistInput" #artistInput>
-  <input type="button" value="Submit" (click)="search(artistInput); display = true">
+  <input type="button" value="Submit" (click)="search(artistInput)">
 </form>
 <div id="itunesResult" *ngIf="display">
     <h1>Itunes</h1>
-  <ul *ngFor="let element of data.itunes.data">
-    <li>{{i}}</li>
-  </ul>
+    <a *ngFor="let element of data.itunes.results" href="{{element.collectionViewUrl}}" target="_blank" rel="noopener noreferrer" class="albumSection">
+      <img src="{{element.artworkUrl100}}" class="albumImg">
+      <p class="albumTitle">{{element.collectionName}}</p>
+      </a>
 </div>
 <div id="deezerResult"  *ngIf="display">
   <h1>Deezer</h1>
+  <a *ngFor="let element of data.deezer.data" href="{{element.link}}" target="_blank" rel="noopener noreferrer" class="albumSection">
+      <img src="{{element.cover_small}}" class="albumImg">
+      <p class="albumTitle">{{element.title}}</p>
+  </a>
 </div>
-
-
-
-  <!-- <span *ngIf="itunes_template">{{fuck}}</span> -->
