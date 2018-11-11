@@ -5,11 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 
-import { HttpClientModule } from '@angular/common/http';
-import {Injector} from '@angular/core';
-
-export let InjectorInstance: Injector;
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,15 +12,9 @@ export let InjectorInstance: Injector;
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  constructor(private injector: Injector) 
-  {
-    InjectorInstance = this.injector;
-  }
-}
+export class AppModule { }
