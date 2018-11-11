@@ -1,7 +1,7 @@
 <h1 id="title">Search in Itunes & Deezer</h1>
 <form id="artistForm">
-  <input type="text" placeholder="Artist" #artistInput>
-  <input type="button" value="Submit" (click)="search(artistInput)">
+  <input type="text" placeholder="Singer or music band" #artistInput>
+  <input type="button" value="Search" (click)="search(artistInput)">
 </form>
 <div id="itunesResult" class="result" *ngIf="display">
     <h1>Itunes</h1>
