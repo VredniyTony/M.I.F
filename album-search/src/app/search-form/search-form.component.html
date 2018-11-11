@@ -1,16 +1,17 @@
 <form>
   <input type="text" placeholder="Artist" id="artistInput" #artistInput>
-  <input type="button" value="Submit" (click)="search(artistInput)">
+  <input type="button" value="Submit" (click)="search(artistInput); display = true">
 </form>
-<div id="itunesResult">
-  <h1>Itunes</h1>
-  <!-- <li *ngFor="{{album of album}}"></li> -->
-  <!-- <span *ngIf="itunes_template">{{fuck}}</span> -->
-
-  <div>
-    {{itunes}}
-  </div>
+<div id="itunesResult" *ngIf="display">
+    <h1>Itunes</h1>
+  <ul *ngFor="let element of data.itunes.data">
+    <li>{{i}}</li>
+  </ul>
 </div>
-<div id="deezerResult">
+<div id="deezerResult"  *ngIf="display">
   <h1>Deezer</h1>
 </div>
+
+
+
+  <!-- <span *ngIf="itunes_template">{{fuck}}</span> -->
