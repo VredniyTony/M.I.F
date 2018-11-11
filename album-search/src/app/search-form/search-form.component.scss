@@ -20,6 +20,7 @@ font-family: $mainFont;
     cursor: text;
     font-size: 24px;
     font-family: $mainFont;
+    margin-bottom: 5px;
 }
 
 #artistForm input[type='button'] {
@@ -32,6 +33,7 @@ font-family: $mainFont;
     outline: none;
     width: 100px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 
 #artistForm input[type='button']:hover {
