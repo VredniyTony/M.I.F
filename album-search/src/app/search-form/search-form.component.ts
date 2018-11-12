@@ -25,12 +25,12 @@ export class SearchFormComponent {
   constructor(private http : HttpClient) {}
 
   search(artist) {
-    let self = this;
+    this.display = false;
     this.artist = artist.value;
-     this.setJson().then(function() {
-      self.display = true;
-      console.log(self.data.itunes);
-      console.log(self.data.deezer);  
+     this.setJson().then(() => {
+      this.display = true;
+      console.log(this.data.itunes);
+      console.log(this.data.deezer);  
      });
    }
 
