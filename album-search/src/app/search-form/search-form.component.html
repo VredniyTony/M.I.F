@@ -1,19 +1,12 @@
 <h1 id="title">Search in Itunes & Deezer</h1>
-<form id="artistForm">
-  <input type="text" placeholder="Singer or music band" #artistInput>
-  <input type="button" value="Search" (click)="search(artistInput)">
-</form>
-<div id="itunesResult" class="result" *ngIf="display">
-    <h1>Itunes</h1>
-    <a *ngFor="let element of data.itunes.results" href="{{element.collectionViewUrl}}" target="_blank" rel="noopener noreferrer" class="albumSection">
-      <img src="{{element.artworkUrl100}}" class="albumImg">
-      <p class="albumTitle">{{element.collectionName}}</p>
-      </a>
+<div id="artistForm">
+  <input type="text" placeholder="Singer or music band" #artistInput (keyup.enter)="search(artistInput.value)">
+  <input type="button" value="Search" (click)="search(artistInput.value)">
 </div>
-<div id="deezerResult" class="result" *ngIf="display">
-  <h1>Deezer</h1>
-  <a *ngFor="let element of data.deezer.data" href="{{element.link}}" target="_blank" rel="noopener noreferrer" class="albumSection">
-      <img src="{{element.cover_medium}}" class="albumImg">
-      <p class="albumTitle">{{element.title}}</p>
+<div id="result" class="result" *ngIf="display">
+  <a *ngFor="let element of resultData" href="{{element.url}}" target="_blank"
+     rel="noopener noreferrer" class="albumSection">
+    <img src="{{element.img}}" class="albumImg">
+    <p class="albumTitle">{{element.title}}</p>
   </a>
 </div>
