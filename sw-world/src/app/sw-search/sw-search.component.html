@@ -1,0 +1,7 @@
+<form [formGroup]="formData" (submit)="onSubmit()">
+    <select  formControlName="property">
+      <option *ngFor="let element of optionsData" value="{{element}}">{{element}}</option>
+    </select>
+    <input type="text" formControlName="data">
+  <button type="submit" [disabled]="!formData.valid">Submite</button>
+</form>

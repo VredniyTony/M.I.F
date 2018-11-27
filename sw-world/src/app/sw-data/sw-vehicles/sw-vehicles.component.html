@@ -1,0 +1,7 @@
+<div *ngIf="data">
+  <div *ngFor="let element of data.results">
+    <h1>{{element.name}}</h1>
+    <p>Vehicle class: {{element.vehicle_class}}</p>
+    <a routerLink="/vehicles/details/{{getUrlId(element.url)}}">details..</a>
+  </div>
+</div>

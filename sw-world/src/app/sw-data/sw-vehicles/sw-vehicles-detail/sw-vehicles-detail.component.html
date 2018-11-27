@@ -1,0 +1,30 @@
+<div *ngIf="dataDetail">
+  <h1>{{dataDetail.name}}</h1>
+  <ul>
+    <li>Cargo capacity: {{dataDetail.cargo_capacity}}</li>
+    <li>Consumables: {{dataDetail.consumables}}</li>
+    <li>Cost in credits: {{dataDetail.cost_in_credits}}</li>
+    <li>Created: {{dataDetail.created}}</li>
+    <li>Crew: {{dataDetail.crew}}</li>
+    <li>Edited: {{dataDetail.edited}}</li>
+    <li>Length: {{dataDetail.length}}</li>
+    <li>Manufacturer: {{dataDetail.manufacturer}}</li>
+    <li>Max atmosphering speed: {{dataDetail.max_atmosphering_speed}}</li>
+    <li>Model: {{dataDetail.model}}</li>
+    <li>Passengers: {{dataDetail.passengers}}</li>
+    <li>Vehicle class: {{dataDetail.vehicle_class}}</li>
+  </ul>
+
+  <div *ngIf="films" style="display: flex; flex-direction: column">
+    <h1>Films</h1>
+    <a *ngFor="let element of films"
+       routerLink="/films/details/{{getUrlId(element.url)}}">{{element.title}}</a>
+  </div>
+
+  <div *ngIf="pilots" style="display: flex; flex-direction: column">
+    <h1>Pilots</h1>
+    <a *ngFor="let element of pilots"
+       routerLink="/people/details/{{getUrlId(element.url)}}">{{element.name}}</a>
+  </div>
+</div>
+
