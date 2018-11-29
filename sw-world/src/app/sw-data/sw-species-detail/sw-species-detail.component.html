@@ -1,0 +1,29 @@
+<div *ngIf="species[index]">
+  <h1>{{species[index].name}}</h1>
+  <ul>
+    <li>Average height: {{species[index].average_height}}</li>
+    <li>Average lifespan: {{species[index].average_lifespan}}</li>
+    <li>Classification: {{species[index].classification}}</li>
+    <li>Created: {{species[index].created}}</li>
+    <li>Designation: {{species[index].designation}}</li>
+    <li>Edited: {{species[index].edited}}</li>
+    <li>Eye color: {{species[index].eye_colors}}</li>
+    <li>Hair color: {{species[index].hair_colors}}</li>
+    <li>Homeworld: {{species[index].homeworld}}</li>
+    <li>Language: {{species[index].language}}</li>
+    <li>Skin color: {{species[index].skin_colors}}</li>
+  </ul>
+
+  <div *ngIf="films" style="display: flex; flex-direction: column">
+    <h1>Films</h1>
+    <a *ngFor="let element of films"
+       routerLink="/films/details/{{json.getUrlId(element.url)}}">{{element.title}}</a>
+  </div>
+
+  <div *ngIf="residents" style="display: flex; flex-direction: column">
+    <h1>Residents</h1>
+    <a *ngFor="let element of residents"
+       routerLink="/people/details/{{json.getUrlId(element.url)}}">{{element.name}}</a>
+  </div>
+</div>
+

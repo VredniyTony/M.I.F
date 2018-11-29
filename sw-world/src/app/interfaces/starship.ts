@@ -1,34 +1,23 @@
-import {Film} from './film';
-import {People} from './people';
+import {Films} from './film';
+import {Peoples} from './people';
 
 export interface Starships {
-  count: number;
-  next: string;
-  previous: string;
-  results: [{
-    name: string;
     MGLT: number;
+    cargo_capacity: number;
+    consumables: string;
+    cost_in_credits: number;
+    created: string;
+    crew: number;
+    edited: string;
+    films: Films[];
+    hyperdrive_rating: string;
+    length: number;
+    manufacturer: string;
+    max_atmosphering_speed: number;
+    model: string;
+    name: string;
+    passengers: number;
+    pilots: Peoples[];
+    starship_class: string;
     url: string;
-  }];
-}
-
-export interface Starship {
-  MGLT: number;
-  cargo_capacity: number;
-  consumables: string;
-  cost_in_credits: number;
-  created: string;
-  crew: number;
-  edited: string;
-  films: Film[];
-  hyperdrive_rating: string;
-  length: number;
-  manufacturer: string;
-  max_atmosphering_speed: number;
-  model: string;
-  name: string;
-  passengers: number;
-  pilots: People[];
-  starship_class: string;
-  url: string;
 }

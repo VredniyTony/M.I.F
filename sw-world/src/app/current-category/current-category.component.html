@@ -1,0 +1,12 @@
+<div *ngFor="let item of itemsList">
+  <ul>
+    <li>
+      <a [routerLink]="[getItemId(item.url)]">{{item.name}}</a>
+    </li>
+  </ul>
+  <!--<ul>-->
+    <!--<li>-->
+      <!--<a [routerLink]="[item]">{{item.title}}</a>-->
+    <!--</li>-->
+  <!--</ul>-->
+</div>

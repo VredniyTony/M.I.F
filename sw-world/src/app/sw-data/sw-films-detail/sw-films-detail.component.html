@@ -1,0 +1,41 @@
+<div *ngIf="films[index]">
+  <h1>{{films[index].title}}</h1>
+  <ul>
+    <li>{{films[index].opening_crawl}}</li>
+    <li>Director: {{films[index].director}}</li>
+    <li>Episode: {{films[index].episode_id}}</li>
+    <li>Producer: {{films[index].producer}}</li>
+    <li>Release films: {{films[index].release_date}}</li>
+    <li>Edited: {{films[index].edited}}</li>
+  </ul>
+
+  <div *ngIf="characters" style="display: flex; flex-direction: column">
+    <h1>Characters</h1>
+    <a *ngFor="let element of characters"
+       routerLink="/people/details/{{json.getUrlId(element.url)}}">{{element.name}}</a>
+  </div>
+
+  <div *ngIf="planets" style="display: flex; flex-direction: column">
+    <h1>Planets</h1>
+    <a *ngFor="let element of planets"
+       routerLink="/planets/details/{{json.getUrlId(element.url)}}">{{element.name}}</a>
+  </div>
+
+  <div *ngIf="species" style="display: flex; flex-direction: column">
+    <h1>Species</h1>
+    <a *ngFor="let element of species"
+       routerLink="/species/details/{{json.getUrlId(element.url)}}">{{element.name}}</a>
+  </div>
+
+  <div *ngIf="starships" style="display: flex; flex-direction: column">
+    <h1>Starships</h1>
+    <a *ngFor="let element of starships"
+       routerLink="/starships/details/{{json.getUrlId(element.url)}}">{{element.name}}</a>
+  </div>
+
+  <div *ngIf="vehicles" style="display: flex; flex-direction: column">
+    <h1>Vehicles</h1>
+    <a *ngFor="let element of vehicles"
+       routerLink="/vehicles/details/{{json.getUrlId(element.url)}}">{{element.name}}</a>
+  </div>
+</div>
