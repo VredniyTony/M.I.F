@@ -1,16 +1,14 @@
-<div *ngIf="peoples[index]">
-  <h1>{{peoples[index].name}}</h1>
+<div *ngIf="people">
+  <h1>{{people.name}}</h1>
   <ul>
-    <li>Birthday: {{peoples[index].birth_year}}</li>
-    <li>Gender: {{peoples[index].gender}}</li>
-    <li>Eye color: {{peoples[index].eye_color}}</li>
-    <li>Hair color: {{peoples[index].hair_color}}</li>
-    <li>Height: {{peoples[index].height}}</li>
-    <li>Mass: {{peoples[index].mass}}</li>
-    <li>Created: {{peoples[index].created}}</li>
-    <li>Edited: {{peoples[index].edited}}</li>
-    <li>Homeworld: {{peoples[index].homeworld}}</li>
-    <li>Skin color: {{peoples[index].skin_color}}</li>
+    <li>Birthday: {{people.birth_year}}</li>
+    <li>Gender: {{people.gender}}</li>
+    <li>Eye color: {{people.eye_color}}</li>
+    <li>Hair color: {{people.hair_color}}</li>
+    <li>Height: {{people.height}}</li>
+    <li>Mass: {{people.mass}}</li>
+    <li>Homeworld: {{people.homeworld}}</li>
+    <li>Skin color: {{people.skin_color}}</li>
   </ul>
 
   <div *ngIf="films" style="display: flex; flex-direction: column">

@@ -11,7 +11,6 @@ export class CurrentItemResolveService implements Resolve<any> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log(route.paramMap.get('id'));
-    return this.apiService.getItem(route.paramMap.get('item'));
+    return this.apiService.getItem(route.parent.paramMap.get('id') + '/' + route.paramMap.get('item'));
   }
 }

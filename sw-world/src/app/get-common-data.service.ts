@@ -20,6 +20,7 @@ export class GetCommonDataService {
   }
 
   getItem(item) {
+    console.log(this.url + item);
     return this.http.get(this.url + item);
   }
 }

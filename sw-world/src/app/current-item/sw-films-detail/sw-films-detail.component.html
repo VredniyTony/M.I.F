@@ -1,12 +1,11 @@
-<div *ngIf="films[index]">
-  <h1>{{films[index].title}}</h1>
+<div *ngIf="film">
+  <h1>{{film.title}}</h1>
+  <p>{{film.opening_crawl}}</p>
   <ul>
-    <li>{{films[index].opening_crawl}}</li>
-    <li>Director: {{films[index].director}}</li>
-    <li>Episode: {{films[index].episode_id}}</li>
-    <li>Producer: {{films[index].producer}}</li>
-    <li>Release films: {{films[index].release_date}}</li>
-    <li>Edited: {{films[index].edited}}</li>
+    <li>Director: {{film.director}}</li>
+    <li>Episode: {{film.episode_id}}</li>
+    <li>Producer: {{film.producer}}</li>
+    <li>Release films: {{film.release_date}}</li>
   </ul>
 
   <div *ngIf="characters" style="display: flex; flex-direction: column">

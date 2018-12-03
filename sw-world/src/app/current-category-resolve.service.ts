@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {GetCommonDataService} from './get-common-data.service';
 
@@ -7,9 +7,12 @@ import {GetCommonDataService} from './get-common-data.service';
 })
 export class CurrentCategoryResolveService implements Resolve<any> {
 
-  constructor(private apiService: GetCommonDataService) { }
+  constructor(private apiService: GetCommonDataService) {
+  }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    console.log(route.queryParams.page);
+
     return this.apiService.getCategory(route.paramMap.get('id'));
   }
 }

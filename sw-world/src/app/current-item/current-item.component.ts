@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -8,16 +8,24 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class CurrentItemComponent implements OnInit {
 
+  itemData;
+  categoryName;
+
   constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.getItemsList();
+    this.getCategoryName();
   }
 
   getItemsList() {
     this.route.data.subscribe(data => {
-      console.log(data.item);
+      this.itemData = data.item;
     });
+  }
+
+  getCategoryName() {
+    this.categoryName = this.route.parent.snapshot.paramMap.get('id');
   }
 }

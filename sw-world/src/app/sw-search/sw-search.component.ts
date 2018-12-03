@@ -1,6 +1,14 @@
 import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {GetCommonDataService} from '../get-common-data.service';
+
+interface List {
+  count: number;
+  results: [{
+    url: string;
+  }];
+}
 
 @Component({
   selector: 'app-sw-search',
@@ -10,56 +18,37 @@ import {Router} from '@angular/router';
 export class SwSearchComponent {
 
   formData: any;
-  private optionsData = ['Films', 'People', 'Planets', 'Species', 'Starships', 'Vehicles'];
-  private url = 'https://swapi.co/api/';
-  private urlGet: string;
+  optionsData = ['films', 'people', 'planets', 'species', 'starships', 'vehicles'];
 
   constructor(private formBuilder: FormBuilder,
-              public router: Router) {
+              public router: Router,
+              private apiService: GetCommonDataService) {
     this.formData = this.formBuilder.group({
-      data: ['', [Validators.required, Validators.minLength(2)]],
-      property: ''
+      item: ['', [Validators.required, Validators.minLength(2)]]
     });
+    this.formData.setValidators()
+
   }
 
-  // onSubmit() {
-  //   switch (this.formData.controls['property'].value) {
-  //     case 'Films':
-  //       this.urlGet = this.url + 'films/' + '?search=' + this.formData.controls['data'].value;
-  //       this.json.getFilms(this.urlGet).subscribe(list => {
-  //         this.router.navigate(['/films/details/' + this.getUrlId(list.results.url)]);
-  //       });
-  //       break;
-  //     case 'People':
-  //       this.urlGet = this.url + 'people' + '?search=' + this.formData.controls['data'].value;
-  //       this.json.getPeoples(this.urlGet).subscribe(list => {
-  //         this.router.navigate(['/people/details/' + this.getUrlId(list.results[0].url)]);
-  //       });
-  //       break;
-  //     case 'Planets':
-  //       this.urlGet = this.url + 'planets' + '?search=' + this.formData.controls['data'].value;
-  //       this.json.getPlanets(this.urlGet).subscribe(list => {
-  //         this.router.navigate(['/planets/details/' + this.getUrlId(list.results[0].url)]);
-  //       });
-  //       break;
-  //     case 'Species':
-  //       this.urlGet = this.url + 'species/' + '?search=' + this.formData.controls['data'].value;
-  //       this.json.getSpecies(this.urlGet).subscribe(list => {
-  //         this.router.navigate(['/species/details/' + this.getUrlId(list.results[0].url)]);
-  //       });
-  //       break;
-  //     case 'Starships':
-  //       this.urlGet = this.url + 'starships/' + '?search=' + this.formData.controls['data'].value;
-  //       this.json.getStarships(this.urlGet).subscribe(list => {
-  //         this.router.navigate(['/starships/details/' + this.getUrlId(list.results[0].url)]);
-  //       });
-  //       break;
-  //     case 'Vehicles':
-  //       this.urlGet = this.url + 'vehicles/' + '?search=' + this.formData.controls['data'].value;
-  //       this.json.getVehicles(this.urlGet).subscribe(list => {
-  //         this.router.navigate(['/vehicles/details/' + this.getUrlId(list.results[0].url)]);
-  //       });
-  //       break;
-  //   }
-  // }
+  onSubmit({value}) {
+    for (const category of this.optionsData) {
+      const itemUrl = category + '?search=' + value.item;
+      this.apiService.getItem(itemUrl).subscribe((data: List) => {
+        if (data.count !== 0 ) {
+          const redirectUrl = 'list/categories/' + category + '/' + this.getItemId(data.results[0].url);
+          this.navigateTo(redirectUrl);
+          return;
+        }
+      });
+    }
+  }
+
+  getItemId(item) {
+    const id = String(item).split('/');
+    return id[id.length - 2];
+  }
+
+  navigateTo(navigateUrl) {
+    this.router.navigate([navigateUrl]);
+  }
 }

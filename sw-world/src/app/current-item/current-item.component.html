@@ -1,3 +1,6 @@
-<p>
-  current-item works!
-</p>
+<app-sw-films-detail *ngIf="categoryName === 'films'" [film]="itemData"></app-sw-films-detail>
+<app-sw-people-detail *ngIf="categoryName === 'people'" [people]="itemData"></app-sw-people-detail>
+<app-sw-planets-detail *ngIf="categoryName === 'planets'" [planet]="itemData"></app-sw-planets-detail>
+<app-sw-species-detail *ngIf="categoryName === 'species'" [specie]="itemData"></app-sw-species-detail>
+<app-sw-starships-detail *ngIf="categoryName === 'starships'" [starship]="itemData"></app-sw-starships-detail>
+<app-sw-vehicles-detail *ngIf="categoryName === 'vehicles'" [vehicle]="itemData"></app-sw-vehicles-detail>
