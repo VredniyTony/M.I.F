@@ -40,23 +40,25 @@ export class CurrentCategoryComponent implements OnInit {
     });
   }
 
-  getItemId(item, index) {
-    const id = String(item).split('/');
+  getItemId(item, index, separator) {
+    const id = String(item).split(separator);
     return id[id.length - index];
   }
 
-  setStates(next, previuos) {
+  setStates(next, previous) {
     this.next = next;
-    this.previous = previuos;
+    this.previous = previous;
   }
 
   updateList(url) {
     this.loader = true;
     this.categoryName = this.route.snapshot.paramMap.get('id');
-    this.apiService.getCategory(this.categoryName + this.getItemId(url, 1)).subscribe((data: List) => {
-      this.itemsList = data.results;
-      this.setStates(data.next, data.previous);
-      this.loader = false;
-    });
+    const queryParams = this.getItemId(url, 1, '=');
+    const redirectUrl = 'list/categories/' + this.categoryName;
+    this.navigateTo(redirectUrl, queryParams);
+  }
+
+  navigateTo(navigateUrl, queryParams) {
+    this.router.navigate([navigateUrl], {queryParams: {page: queryParams}});
   }
 }

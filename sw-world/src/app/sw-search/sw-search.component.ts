@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {GetCommonDataService} from '../get-common-data.service';
+import {error} from 'selenium-webdriver';
 
 interface List {
   count: number;
@@ -26,20 +27,22 @@ export class SwSearchComponent {
     this.formData = this.formBuilder.group({
       item: ['', [Validators.required, Validators.minLength(2)]]
     });
-    this.formData.setValidators()
-
   }
 
   onSubmit({value}) {
+    let flag = false;
     for (const category of this.optionsData) {
       const itemUrl = category + '?search=' + value.item;
       this.apiService.getItem(itemUrl).subscribe((data: List) => {
-        if (data.count !== 0 ) {
+        if (data.count !== 0) {
           const redirectUrl = 'list/categories/' + category + '/' + this.getItemId(data.results[0].url);
           this.navigateTo(redirectUrl);
-          return;
+          flag = true;
         }
       });
+      if (flag) {
+        return;
+      }
     }
   }
 

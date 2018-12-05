@@ -3,7 +3,7 @@
     <div *ngFor="let item of itemsList">
       <ul>
         <li>
-          <a [routerLink]="[getItemId(item.url, 2)]">
+          <a [routerLink]="[getItemId(item.url, 2, '/')]">
             <span *ngIf="item.name">{{item.name}}</span>
             <span *ngIf="item.title">{{item.title}}</span></a>
         </li>

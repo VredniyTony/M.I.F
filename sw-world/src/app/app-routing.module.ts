@@ -7,7 +7,6 @@ import {CurrentCategoryComponent} from './current-category/current-category.comp
 import {CurrentCategoryResolveService} from './current-category-resolve.service';
 import {CurrentItemComponent} from './current-item/current-item.component';
 import {CurrentItemResolveService} from './current-item-resolve.service';
-import {query} from '@angular/animations';
 
 const routes: Routes = [
   {
@@ -26,13 +25,11 @@ const routes: Routes = [
       component: CategoriesListComponent,
       children: [{
         path: ':id',
-        // params: {
-        //   "queryParam": {query: true}
-        // },
         component: CurrentCategoryComponent,
         resolve: {
           categoryContent: CurrentCategoryResolveService
         },
+        runGuardsAndResolvers: 'always',
         children: [{
           path: ':item',
           component: CurrentItemComponent,
