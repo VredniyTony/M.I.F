@@ -1,0 +1,9 @@
+<div>
+  <div>
+    <a *ngFor="let category of categories"
+       [routerLink]="[category]" [queryParams]="{page: '1'}">
+      <button>{{category | titlecase}}</button>
+    </a>
+  </div>
+  <app-sw-search></app-sw-search>
+</div>

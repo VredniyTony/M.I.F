@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {GetCommonDataService} from '../get-common-data.service';
-import {error} from 'selenium-webdriver';
+import {GetCommonDataService} from '../core/get-common-data.service';
 
 interface List {
   count: number;
@@ -35,7 +34,7 @@ export class SwSearchComponent {
       const itemUrl = category + '?search=' + value.item;
       this.apiService.getItem(itemUrl).subscribe((data: List) => {
         if (data.count !== 0) {
-          const redirectUrl = 'list/categories/' + category + '/' + this.getItemId(data.results[0].url);
+          const redirectUrl = category + '/' + this.getItemId(data.results[0].url);
           this.navigateTo(redirectUrl);
           flag = true;
         }

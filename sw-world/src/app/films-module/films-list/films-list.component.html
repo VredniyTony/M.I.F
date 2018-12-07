@@ -1,0 +1,9 @@
+<div *ngFor="let item of filmsList">
+  <ul>
+    <li>
+      <a [routerLink]="[getItemId(item.url)]">
+        <span>{{item.title}}</span>
+      </a>
+    </li>
+  </ul>
+</div>

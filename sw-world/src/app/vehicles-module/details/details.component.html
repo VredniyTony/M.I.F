@@ -1,0 +1,25 @@
+<h1>{{vehicle.name}}</h1>
+<ul>
+  <li>Cargo capacity: {{vehicle.cargo_capacity}}</li>
+  <li>Consumables: {{vehicle.consumables}}</li>
+  <li>Cost in credits: {{vehicle.cost_in_credits}}</li>
+  <li>Crew: {{vehicle.crew}}</li>
+  <li>Length: {{vehicle.length}}</li>
+  <li>Manufacturer: {{vehicle.manufacturer}}</li>
+  <li>Max atmosphering speed: {{vehicle.max_atmosphering_speed}}</li>
+  <li>Model: {{vehicle.model}}</li>
+  <li>Passengers: {{vehicle.passengers}}</li>
+  <li>Vehicle class: {{vehicle.vehicle_class}}</li>
+</ul>
+
+<div *ngIf="films" style="display: flex; flex-direction: column">
+  <h1>Films</h1>
+  <a *ngFor="let film of films" routerLink="../../films/{{getItemId(film.url, 2, '/')}}">
+    {{film.title}}</a>
+</div>
+
+<div *ngIf="pilots" style="display: flex; flex-direction: column">
+  <h1>Pilots</h1>
+  <a *ngFor="let pilot of pilots" routerLink="../../people/{{getItemId(pilot.url, 2, '/')}}">
+    {{pilot.name}}</a>
+</div>

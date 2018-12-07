@@ -1,0 +1,23 @@
+<h1>{{planet.name}}</h1>
+<ul>
+  <li>Climate: {{planet.climate}}</li>
+  <li>Rotation period: {{planet.rotation_period}}</li>
+  <li>Orbital period: {{planet.orbital_period}}</li>
+  <li>Diameter: {{planet.diameter}}</li>
+  <li>Gravity: {{planet.gravity}}</li>
+  <li>Terrarin: {{planet.terrain}}</li>
+  <li>Surface water: {{planet.surface_water}}</li>
+  <li>Population: {{planet.population}}</li>
+</ul>
+
+<div *ngIf="films" style="display: flex; flex-direction: column">
+  <h1>Films</h1>
+  <a *ngFor="let film of films" routerLink="../../films/{{getItemId(film.url, 2, '/')}}">
+    {{film.title}}</a>
+</div>
+
+<div *ngIf="residents" style="display: flex; flex-direction: column">
+  <h1>Residents</h1>
+  <a *ngFor="let resident of residents" routerLink="../../people/{{getItemId(resident.url, 2, '/')}}">
+    {{resident.name}}</a>
+</div>

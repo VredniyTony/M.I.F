@@ -1,0 +1,13 @@
+<div *ngFor="let item of planetsList">
+  <ul>
+    <li>
+      <a [routerLink]="[getItemId(item.url, 2, '/')]">
+        <span>{{item.name}}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div>
+  <button (click)="update(previous)" [disabled]="previous === null || !loader"><<</button>
+  <button (click)="update(next)" [disabled]="next === null || !loader">>></button>
+</div>
