@@ -12,13 +12,13 @@
   <li>Skin color: {{specie.skin_colors}}</li>
 </ul>
 
-<div *ngIf="films" style="display: flex; flex-direction: column">
+<div *ngIf="films && films.length > 0" style="display: flex; flex-direction: column">
   <h1>Films</h1>
   <a *ngFor="let film of films" routerLink="../../films/{{getItemId(film.url, 2, '/')}}">
     {{film.title}}</a>
 </div>
 
-<div *ngIf="people" style="display: flex; flex-direction: column">
+<div *ngIf="people && people.length > 0" style="display: flex; flex-direction: column">
   <h1>People</h1>
   <a *ngFor="let person of people" routerLink="../../people/{{getItemId(person.url, 2, '/')}}">
     {{person.name}}</a>

@@ -12,13 +12,13 @@
   <li>Vehicle class: {{vehicle.vehicle_class}}</li>
 </ul>
 
-<div *ngIf="films" style="display: flex; flex-direction: column">
+<div *ngIf="films && films.length > 0" style="display: flex; flex-direction: column">
   <h1>Films</h1>
   <a *ngFor="let film of films" routerLink="../../films/{{getItemId(film.url, 2, '/')}}">
     {{film.title}}</a>
 </div>
 
-<div *ngIf="pilots" style="display: flex; flex-direction: column">
+<div *ngIf="pilots && pilots.length > 0" style="display: flex; flex-direction: column">
   <h1>Pilots</h1>
   <a *ngFor="let pilot of pilots" routerLink="../../people/{{getItemId(pilot.url, 2, '/')}}">
     {{pilot.name}}</a>

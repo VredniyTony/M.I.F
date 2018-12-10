@@ -7,31 +7,31 @@
   <li>Release films: {{film.release_date}}</li>
 </ul>
 
-<div *ngIf="characters" style="display: flex; flex-direction: column">
+<div *ngIf="characters && characters.length > 0" style="display: flex; flex-direction: column">
   <h1>Characters</h1>
   <a *ngFor="let person of characters" routerLink="../../people/{{getItemId(film.url, 2, '/')}}">
     {{person.name}}</a>
 </div>
 
-<div *ngIf="planets" style="display: flex; flex-direction: column">
+<div *ngIf="planets && planets.length > 0" style="display: flex; flex-direction: column">
   <h1>Planets</h1>
   <a *ngFor="let planet of planets" routerLink="../../planets/{{getItemId(film.url, 2, '/')}}">
     {{planet.name}}</a>
 </div>
 
-<div *ngIf="species" style="display: flex; flex-direction: column">
+<div *ngIf="species && species.length > 0" style="display: flex; flex-direction: column">
   <h1>Species</h1>
   <a *ngFor="let specie of species" routerLink="../../species/{{getItemId(film.url, 2, '/')}}">
     {{specie.name}}</a>
 </div>
 
-<div *ngIf="starships" style="display: flex; flex-direction: column">
+<div *ngIf="starships && starships.length > 0" style="display: flex; flex-direction: column">
   <h1>Starships</h1>
   <a *ngFor="let starship of starships" routerLink="../../starships/{{getItemId(film.url, 2, '/')}}">
     {{starship.name}}</a>
 </div>
 
-<div *ngIf="vehicles" style="display: flex; flex-direction: column">
+<div *ngIf="vehicles && vehicles.length > 0" style="display: flex; flex-direction: column">
   <h1>Vehicles</h1>
   <a *ngFor="let vehicle of vehicles" routerLink="../../vehicles/{{getItemId(film.url, 2, '/')}}">
     {{vehicle.name}}</a>

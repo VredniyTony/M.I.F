@@ -10,13 +10,13 @@
   <li>Population: {{planet.population}}</li>
 </ul>
 
-<div *ngIf="films" style="display: flex; flex-direction: column">
+<div *ngIf="films && films.length > 0" style="display: flex; flex-direction: column">
   <h1>Films</h1>
   <a *ngFor="let film of films" routerLink="../../films/{{getItemId(film.url, 2, '/')}}">
     {{film.title}}</a>
 </div>
 
-<div *ngIf="residents" style="display: flex; flex-direction: column">
+<div *ngIf="residents && residents.length > 0" style="display: flex; flex-direction: column">
   <h1>Residents</h1>
   <a *ngFor="let resident of residents" routerLink="../../people/{{getItemId(resident.url, 2, '/')}}">
     {{resident.name}}</a>
