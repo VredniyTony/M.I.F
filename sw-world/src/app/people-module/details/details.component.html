@@ -6,34 +6,33 @@
   <li>Hair color: {{people.hair_color}}</li>
   <li>Height: {{people.height}}</li>
   <li>Mass: {{people.mass}}</li>
-  <li>Homeworld: <a *ngIf="planet" routerLink="../../planets/{{getItemId(planet.url, 2, '/')}}">
+  <li>Homeworld: <a *ngIf="planet" routerLink="../../planets/{{apiService.getItemId(planet.url, 2, '/')}}">
     {{planet.name}}</a></li>
   <li>Skin color: {{people.skin_color}}</li>
 </ul>
 
 <div *ngIf="films && films.length > 0" style="display: flex; flex-direction: column">
   <h1>Films</h1>
-  <a *ngFor="let film of films" routerLink="../../films/{{getItemId(film.url, 2, '/')}}">
+  <a *ngFor="let film of films" routerLink="../../films/{{apiService.getItemId(film.url, 2, '/')}}">
     {{film.title}}</a>
 </div>
-
 <div *ngIf="species && species.length > 0" style="display: flex; flex-direction: column">
   <h1>Species</h1>
   <a *ngFor="let specie of species"
-     routerLink="../../species/{{getItemId(specie.url, 2, '/')}}">
+     routerLink="../../species/{{apiService.getItemId(specie.url, 2, '/')}}">
     {{specie.name}}</a>
 </div>
 
 <div *ngIf="starships && starships.length > 0" style="display: flex; flex-direction: column">
   <h1>Starships</h1>
   <a *ngFor="let starship of starships"
-     routerLink="../../starships/{{getItemId(starship.url, 2, '/')}}">
+     routerLink="../../starships/{{apiService.getItemId(starship.url, 2, '/')}}">
     {{starship.name}}</a>
 </div>
 
 <div *ngIf="vehicles && vehicles.length > 0" style="display: flex; flex-direction: column">
   <h1>Vehicles</h1>
   <a *ngFor="let vehicle of vehicles"
-     routerLink="../../vehicles/{{getItemId(vehicle.url, 2, '/')}}">
+     routerLink="../../vehicles/{{apiService.getItemId(vehicle.url, 2, '/')}}">
     {{vehicle.name}}</a>
 </div>

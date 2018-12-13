@@ -54,7 +54,6 @@ export class DetailsComponent implements OnInit {
 
   getItemsList() {
     this.route.data.subscribe((data: Specie) => {
-      console.log(data);
       this.specie = data.details;
       this.getPlanet();
       this.getFilms();

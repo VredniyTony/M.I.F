@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {VehiclesListComponent} from './vehicles-list/vehicles-list.component';
-import {CurrentItemResolveService} from '../core/current-item-resolve.service';
+import {CurrentItemResolveService} from '../core/resolvers/current-item-resolve.service';
 import {DetailsComponent} from './details/details.component';
-import {CurrentCategoryResolveService} from '../core/current-category-resolve.service';
+import {CurrentCategoryResolveService} from '../core/resolvers/current-category-resolve.service';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
     resolve: {
       vehicles: CurrentCategoryResolveService
     },
-    runGuardsAndResolvers: 'always'
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   },
   {
     path: ':item',
@@ -27,4 +27,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class VehiclesModuleRoutingModule { }
+export class VehiclesModuleRoutingModule {
+}

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {GetCommonDataService} from '../../core/get-common-data.service';
 
 @Component({
   selector: 'app-people-list',
@@ -14,14 +15,15 @@ export class PeopleListComponent implements OnInit {
   loader;
 
   constructor(private route: ActivatedRoute,
-              public router: Router) {
+              private router: Router,
+              public apiService: GetCommonDataService) {
   }
 
   ngOnInit() {
-    this.getItemsList();
+    this.getItemList();
   }
 
-  getItemsList() {
+  getItemList() {
     this.route.data.subscribe(data => {
       this.next = data.people.next;
       this.previous = data.people.previous;

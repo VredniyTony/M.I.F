@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {NavigationStart, Router} from '@angular/router';
 import {GetCommonDataService} from '../core/get-common-data.service';
+import {filter} from 'rxjs/operators';
 
 interface List {
   count: number;
@@ -17,6 +18,7 @@ interface List {
 })
 export class SwSearchComponent {
 
+  results;
   formData: any;
   optionsData = ['films', 'people', 'planets', 'species', 'starships', 'vehicles'];
 
@@ -26,23 +28,25 @@ export class SwSearchComponent {
     this.formData = this.formBuilder.group({
       item: ['', [Validators.required, Validators.minLength(2)]]
     });
+
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationStart))
+      .subscribe(() => (this.results = null));
   }
 
   onSubmit({value}) {
-    let flag = false;
-    for (const category of this.optionsData) {
+    this.results = null;
+    this.optionsData.forEach(category => {
       const itemUrl = category + '?search=' + value.item;
       this.apiService.getItem(itemUrl).subscribe((data: List) => {
-        if (data.count !== 0) {
-          const redirectUrl = category + '/' + this.getItemId(data.results[0].url);
-          this.navigateTo(redirectUrl);
-          flag = true;
+        if (data.count === 0) {
+          this.results++;
+          return;
         }
+        const redirectUrl = category + '/' + this.getItemId(data.results[0].url);
+        this.navigateTo(redirectUrl);
       });
-      if (flag) {
-        return;
-      }
-    }
+    });
   }
 
   getItemId(item) {

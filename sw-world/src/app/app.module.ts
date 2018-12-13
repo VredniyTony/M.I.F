@@ -8,7 +8,9 @@ import {NavigationBarComponent} from './navigation-bar/navigation-bar.component'
 import {MainPageComponent} from './main-page/main-page.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NoopInterceptor} from './core/interceptor';
-import { ErrorPageComponent } from './error-page/error-page.component';
+import {ErrorPageComponent} from './error-page/error-page.component';
+import {LoaderComponent} from './loader/loader.component';
+import {LoaderInterceptorService} from './core/loaders/loader-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     SwSearchComponent,
     NavigationBarComponent,
     MainPageComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,14 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     HttpClientModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true},
+    {
+      provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -9,30 +9,30 @@
 
 <div *ngIf="characters && characters.length > 0" style="display: flex; flex-direction: column">
   <h1>Characters</h1>
-  <a *ngFor="let person of characters" routerLink="../../people/{{getItemId(film.url, 2, '/')}}">
+  <a *ngFor="let person of characters" routerLink="../../people/{{getItemId(person.url, 2, '/')}}">
     {{person.name}}</a>
 </div>
 
 <div *ngIf="planets && planets.length > 0" style="display: flex; flex-direction: column">
   <h1>Planets</h1>
-  <a *ngFor="let planet of planets" routerLink="../../planets/{{getItemId(film.url, 2, '/')}}">
+  <a *ngFor="let planet of planets" routerLink="../../planets/{{getItemId(planet.url, 2, '/')}}">
     {{planet.name}}</a>
 </div>
 
 <div *ngIf="species && species.length > 0" style="display: flex; flex-direction: column">
   <h1>Species</h1>
-  <a *ngFor="let specie of species" routerLink="../../species/{{getItemId(film.url, 2, '/')}}">
+  <a *ngFor="let specie of species" routerLink="../../species/{{getItemId(specie.url, 2, '/')}}">
     {{specie.name}}</a>
 </div>
 
 <div *ngIf="starships && starships.length > 0" style="display: flex; flex-direction: column">
   <h1>Starships</h1>
-  <a *ngFor="let starship of starships" routerLink="../../starships/{{getItemId(film.url, 2, '/')}}">
+  <a *ngFor="let starship of starships" routerLink="../../starships/{{getItemId(starship.url, 2, '/')}}">
     {{starship.name}}</a>
 </div>
 
 <div *ngIf="vehicles && vehicles.length > 0" style="display: flex; flex-direction: column">
   <h1>Vehicles</h1>
-  <a *ngFor="let vehicle of vehicles" routerLink="../../vehicles/{{getItemId(film.url, 2, '/')}}">
+  <a *ngFor="let vehicle of vehicles" routerLink="../../vehicles/{{getItemId(vehicle.url, 2, '/')}}">
     {{vehicle.name}}</a>
 </div>

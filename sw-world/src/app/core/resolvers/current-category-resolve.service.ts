@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {GetCommonDataService} from './get-common-data.service';
+import {GetCommonDataService} from '../get-common-data.service';
 
 @Injectable({
   providedIn: 'root'

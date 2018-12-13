@@ -1,4 +1,4 @@
-<div *ngFor="let item of peopleList" [routerLink]="[getItemId(item.url, 2 , '/')]" class="people">
+<div *ngFor="let item of peopleList" [routerLink]="[apiService.getItemId(item.url, 2, '/')]" class="people">
   <h1>{{item.name}}</h1>
   <p>{{item.birth_year}}</p>
 </div>

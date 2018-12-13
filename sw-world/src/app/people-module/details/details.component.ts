@@ -31,12 +31,6 @@ interface People {
   }];
 }
 
-interface CommonData {
-  name: string;
-  title: string;
-  url: string;
-}
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -51,69 +45,34 @@ export class DetailsComponent implements OnInit {
   starships = [];
   vehicles = [];
 
+  loader = 0;
+
   constructor(private route: ActivatedRoute,
-              private apiService: GetCommonDataService) {
+              public apiService: GetCommonDataService) {
   }
 
   ngOnInit() {
-    this.getItemsList();
+    this.getItemList();
   }
 
-  getItemsList() {
+  getItemList() {
     this.route.data.subscribe((data: People) => {
       this.people = data.details;
-      this.getPlanet();
-      this.getFilms();
-      this.getSpecies();
-      this.getStarships();
-      this.getVehicles();
-    });
-  }
-
-  getItemId(item, index, separator) {
-    const id = String(item).split(separator);
-    return id[id.length - index];
-  }
-
-  getPlanet() {
-    const url = 'planets/' + this.getItemId(this.people.homeworld, 2, '/');
-    this.apiService.getItem(url).subscribe((data: CommonData) => {
-      this.planet = data;
-    });
-  }
-
-  getFilms() {
-    this.people.films.forEach(url => {
-      const filmUrl = 'films/' + this.getItemId(url, 2, '/');
-      this.apiService.getItem(filmUrl).subscribe((film: CommonData) => {
-        this.films.push(film);
+      this.apiService.getItem(`planets/${this.apiService.getItemId(this.people.homeworld, 2, '/')}`)
+        .subscribe(results => {
+          this.planet = results;
+        });
+      this.apiService.getItemList(this.people.films, 'films').subscribe(results => {
+        this.films = results;
       });
-    });
-  }
-
-  getSpecies() {
-    this.people.species.forEach(url => {
-      const specieUrl = 'species/' + this.getItemId(url, 2, '/');
-      this.apiService.getItem(specieUrl).subscribe((specie: CommonData) => {
-        this.species.push(specie);
+      this.apiService.getItemList(this.people.species, 'species').subscribe(results => {
+        this.species = results;
       });
-    });
-  }
-
-  getStarships() {
-    this.people.starships.forEach(url => {
-      const starshipUrl = 'starships/' + this.getItemId(url, 2, '/');
-      this.apiService.getItem(starshipUrl).subscribe((starship: CommonData) => {
-        this.starships.push(starship);
+      this.apiService.getItemList(this.people.starships, 'starships').subscribe(results => {
+        this.starships = results;
       });
-    });
-  }
-
-  getVehicles() {
-    this.people.vehicles.forEach(url => {
-      const vehicleUrl = 'vehicles/' + this.getItemId(url, 2, '/');
-      this.apiService.getItem(vehicleUrl).subscribe((vehicle: CommonData) => {
-        this.vehicles.push(vehicle);
+      this.apiService.getItemList(this.people.vehicles, 'vehicles').subscribe(results => {
+        this.vehicles = results;
       });
     });
   }

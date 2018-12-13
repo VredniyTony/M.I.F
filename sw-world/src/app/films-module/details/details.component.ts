@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {GetCommonDataService} from '../../core/get-common-data.service';
+import {forkJoin} from 'rxjs';
 
 interface Film {
   details: [{
@@ -30,12 +31,6 @@ interface Film {
   }];
 }
 
-interface CommonData {
-  name: string;
-  title: string;
-  url: string;
-}
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -61,11 +56,21 @@ export class DetailsComponent implements OnInit {
   getItemsList() {
     this.route.data.subscribe((data: Film) => {
       this.film = data.details;
-      this.getPeople();
-      this.getPlanets();
-      this.getSpecies();
-      this.getStarships();
-      this.getVehicles();
+      this.getItems(this.film.characters, 'people').subscribe(results => {
+        this.characters = results;
+      });
+      this.getItems(this.film.planets, 'planets').subscribe(results => {
+        this.planets = results;
+      });
+      this.getItems(this.film.species, 'species').subscribe(results => {
+        this.species = results;
+      });
+      this.getItems(this.film.starships, 'starships').subscribe(results => {
+        this.starships = results;
+      });
+      this.getItems(this.film.vehicles, 'vehicles').subscribe(results => {
+        this.vehicles = results;
+      });
     });
   }
 
@@ -74,48 +79,11 @@ export class DetailsComponent implements OnInit {
     return id[id.length - index];
   }
 
-  getPeople() {
-    this.film.characters.forEach(url => {
-      const charactersUrl = 'people/' + this.getItemId(url, 2, '/');
-      this.apiService.getItem(charactersUrl).subscribe((people: CommonData) => {
-        this.characters.push(people);
-      });
+  getItems(urls, category) {
+    const dataUrls = [];
+    urls.forEach(url => {
+      dataUrls.push(this.apiService.getItem(`${category}/${this.getItemId(url, 2, '/')}`));
     });
-  }
-
-  getPlanets() {
-    this.film.planets.forEach(url => {
-      const planetsUrl = 'planets/' + this.getItemId(url, 2, '/');
-      this.apiService.getItem(planetsUrl).subscribe((planet: CommonData) => {
-        this.planets.push(planet);
-      });
-    });
-  }
-
-  getSpecies() {
-    this.film.species.forEach(url => {
-      const speciesUrl = 'species/' + this.getItemId(url, 2, '/');
-      this.apiService.getItem(speciesUrl).subscribe((specie: CommonData) => {
-        this.species.push(specie);
-      });
-    });
-  }
-
-  getStarships() {
-    this.film.starships.forEach(url => {
-      const starshipsUrl = 'starships/' + this.getItemId(url, 2, '/');
-      this.apiService.getItem(starshipsUrl).subscribe((starship: CommonData) => {
-        this.starships.push(starship);
-      });
-    });
-  }
-
-  getVehicles() {
-    this.film.vehicles.forEach(url => {
-      const vehicleUrl = 'vehicles/' + this.getItemId(url, 2, '/');
-      this.apiService.getItem(vehicleUrl).subscribe((vehicle: CommonData) => {
-        this.vehicles.push(vehicle);
-      });
-    });
+    return forkJoin(dataUrls);
   }
 }
