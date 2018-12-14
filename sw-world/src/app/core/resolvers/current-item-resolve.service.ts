@@ -5,12 +5,13 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 @Injectable({
   providedIn: 'root'
 })
+
 export class CurrentItemResolveService implements Resolve<any> {
 
   constructor(private apiService: GetCommonDataService) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.apiService.getItem( route.parent.routeConfig.path + '/' + route.paramMap.get('item'));
+    return this.apiService.getItem(route.parent.routeConfig.path + '/' + route.paramMap.get('item'));
   }
 }

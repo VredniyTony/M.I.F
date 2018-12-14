@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {LoaderService} from './loader.service';
 import {tap} from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ export class LoaderInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     this.showLoader();
-    return next.handle(req).pipe(tap((event: HttpEvent<any>) => {
+    return next.handle(req).pipe(tap((event) => {
       if (event instanceof HttpResponse) {
         this.hideLoader();
       }

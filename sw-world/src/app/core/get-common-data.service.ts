@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {forkJoin} from 'rxjs';
+import {forkJoin, of} from 'rxjs';
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,8 @@ export class GetCommonDataService {
     return this.http.get(this.url + item);
   }
 
-  getItemList(urls, category) {
-    const dataUrls = [];
-    urls.forEach(url => {
-      dataUrls.push(this.getItem(`${category}/${this.getItemId(url, 2, '/')}`));
-    });
-    return forkJoin(dataUrls);
+  getData(url) {
+    return this.http.get(url);
   }
 
   getItemId(item, index, separator) {

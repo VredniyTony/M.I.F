@@ -39,13 +39,6 @@ interface People {
 export class DetailsComponent implements OnInit {
 
   people;
-  planet;
-  films = [];
-  species = [];
-  starships = [];
-  vehicles = [];
-
-  loader = 0;
 
   constructor(private route: ActivatedRoute,
               public apiService: GetCommonDataService) {
@@ -58,22 +51,7 @@ export class DetailsComponent implements OnInit {
   getItemList() {
     this.route.data.subscribe((data: People) => {
       this.people = data.details;
-      this.apiService.getItem(`planets/${this.apiService.getItemId(this.people.homeworld, 2, '/')}`)
-        .subscribe(results => {
-          this.planet = results;
-        });
-      this.apiService.getItemList(this.people.films, 'films').subscribe(results => {
-        this.films = results;
-      });
-      this.apiService.getItemList(this.people.species, 'species').subscribe(results => {
-        this.species = results;
-      });
-      this.apiService.getItemList(this.people.starships, 'starships').subscribe(results => {
-        this.starships = results;
-      });
-      this.apiService.getItemList(this.people.vehicles, 'vehicles').subscribe(results => {
-        this.vehicles = results;
-      });
+      console.log(this.people);
     });
   }
 }
