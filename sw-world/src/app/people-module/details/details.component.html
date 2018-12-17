@@ -1,38 +1,70 @@
-<h1>{{people.name}}</h1>
-<ul>
-  <li>Birthday: {{people.birth_year}}</li>
-  <li>Gender: {{people.gender}}</li>
-  <li>Eye color: {{people.eye_color}}</li>
-  <li>Hair color: {{people.hair_color}}</li>
-  <li>Height: {{people.height}}</li>
-  <li>Mass: {{people.mass}}</li>
-  <li>Homeworld: <a *ngIf="people.homeworld.url" routerLink="../../planets/{{apiService.getItemId(people.homeworld.url, 2, '/')}}">
-    {{people.homeworld.name}}</a></li>
-  <li>Skin color: {{people.skin_color}}</li>
-</ul>
+<div id="body">
+  <div id="container">
+    <h1 id="title">{{people.name}}</h1>
+    <ul>
+      <li>Birthday: {{people.birth_year}}</li>
+      <li>Gender: {{people.gender}}</li>
+      <li>Eye color: {{people.eye_color}}</li>
+      <li>Hair color: {{people.hair_color}}</li>
+      <li>Height: {{people.height}}</li>
+      <li>Mass: {{people.mass}}</li>
+      <li style="display: flex; flex-direction: row;">Homeworld:
+        <div class="showDetails">
+          <a routerLink="../../planets/{{apiService.getItemId(people.homeworld.url, 2, '/')}}">
+            {{people.homeworld.name}}</a>
+          <div>
+            <p><span>Climate:</span> {{people.homeworld.climate}}</p>
+            <p><span>Gravity:</span> {{people.homeworld.gravity}}</p>
+            <p><span>Population:</span> {{people.homeworld.population}}</p>
+            <p><span>Terrain:</span> {{people.homeworld.terrain}}</p>
+          </div>
+        </div>
+      </li>
+      <li>Skin color: {{people.skin_color}}</li>
+    </ul>
 
-<div *ngIf="people.films.length > 0" style="display: flex; flex-direction: column">
-  <h1>Films</h1>
-  <a *ngFor="let film of people.films" routerLink="../../films/{{apiService.getItemId(film.url, 2, '/')}}">
-    {{film.title}}</a>
-</div>
-<div *ngIf="people.species.length > 0" style="display: flex; flex-direction: column">
-  <h1>Species</h1>
-  <a *ngFor="let specie of people.species"
-     routerLink="../../species/{{apiService.getItemId(specie.url, 2, '/')}}">
-    {{specie.name}}</a>
-</div>
+    <div id="lists">
+      <div *ngIf="people.films.length > 0" style="display: flex; flex-direction: column">
+        <h1>Films</h1>
+        <div class="showDetails" *ngFor="let film of people.films">
+          <a routerLink="../../films/{{apiService.getItemId(film.url, 2, '/')}}">
+            {{film.title}}</a>
+          <div>
+            <p><span>Director:</span> {{film.director}}</p>
+            <p><span>Episode:</span> {{film.episode_id}}</p>
+            <p><span>Producer:</span> {{film.producer}}</p>
+            <p><span>Release date:</span> {{film.release_date}}</p>
+          </div>
+        </div>
+      </div>
 
-<div *ngIf="people.starships.length > 0" style="display: flex; flex-direction: column">
-  <h1>Starships</h1>
-  <a *ngFor="let starship of people.starships"
-     routerLink="../../starships/{{apiService.getItemId(starship.url, 2, '/')}}">
-    {{starship.name}}</a>
-</div>
+      <div *ngIf="people.starships.length > 0" style="display: flex; flex-direction: column">
+        <h1>Starships</h1>
+        <div class="showDetails" *ngFor="let starship of people.starships">
+          <a routerLink="../../starships/{{apiService.getItemId(starship.url, 2, '/')}}">
+            {{starship.name}}</a>
+          <div>
+            <p><span>Length:</span> {{starship.length}}</p>
+            <p><span>Manufacturer:</span> {{starship.manufacturer}}</p>
+            <p><span>Model:</span> {{starship.model}}</p>
+            <p><span>Starship class:</span> {{starship.starship_class}}</p>
+          </div>
+        </div>
+      </div>
 
-<div *ngIf="people.vehicles.length > 0" style="display: flex; flex-direction: column">
-  <h1>Vehicles</h1>
-  <a *ngFor="let vehicle of people.vehicles"
-     routerLink="../../vehicles/{{apiService.getItemId(vehicle.url, 2, '/')}}">
-    {{vehicle.name}}</a>
+      <div *ngIf="people.vehicles.length > 0" style="display: flex; flex-direction: column">
+        <h1>Vehicles</h1>
+        <div class="showDetails" *ngFor="let vehicle of people.vehicles">
+          <a routerLink="../../vehicles/{{apiService.getItemId(vehicle.url, 2, '/')}}">
+            {{vehicle.name}}</a>
+          <div>
+            <p><span>Cargo capacity:</span> {{vehicle.cargo_capacity}}</p>
+            <p><span>Length:</span> {{vehicle.length}}</p>
+            <p><span>Manufacturer:</span> {{vehicle.manufacturer}}</p>
+            <p><span>Vehicle class:</span> {{vehicle.vehicle_class}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

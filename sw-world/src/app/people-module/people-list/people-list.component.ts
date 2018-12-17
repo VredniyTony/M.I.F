@@ -32,13 +32,8 @@ export class PeopleListComponent implements OnInit {
     });
   }
 
-  getItemId(item, index, separator) {
-    const id = String(item).split(separator);
-    return id[id.length - index];
-  }
-
   update(url) {
-    const query = this.getItemId(url, 1, '=');
+    const query = this.apiService.getItemId(url, 1, '=');
     this.loader = false;
     this.router.navigate(['people'], {queryParams: {page: query}});
   }

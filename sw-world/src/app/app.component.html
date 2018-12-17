@@ -1,6 +1,8 @@
 <app-loader></app-loader>
-<div>
-  <a [routerLink]="['main']"><h1>{{title}}</h1></a>
+<a [routerLink]="['main']"><h1>{{title}}</h1></a>
+<div class="topBar">
   <app-navigation-bar></app-navigation-bar>
+  <app-sw-search></app-sw-search>
 </div>
 <router-outlet></router-outlet>
+<footer></footer>

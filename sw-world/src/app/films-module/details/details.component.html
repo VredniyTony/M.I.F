@@ -1,38 +1,84 @@
-<h1>{{film.title}}</h1>
-<p>{{film.opening_crawl}}</p>
-<ul>
-  <li>Director: {{film.director}}</li>
-  <li>Episode: {{film.episode_id}}</li>
-  <li>Producer: {{film.producer}}</li>
-  <li>Release films: {{film.release_date}}</li>
-</ul>
+<div id="body">
+  <div id="container">
+    <h1 id="title">{{film.title}}</h1>
+    <p id="openingCrawl">{{film.opening_crawl}}</p>
+    <ul>
+      <li>Director: {{film.director}}</li>
+      <li>Episode: {{film.episode_id}}</li>
+      <li>Producer: {{film.producer}}</li>
+      <li>Release films: {{film.release_date}}</li>
+    </ul>
 
-<div *ngIf="characters && characters.length > 0" style="display: flex; flex-direction: column">
-  <h1>Characters</h1>
-  <a *ngFor="let person of characters" routerLink="../../people/{{getItemId(person.url, 2, '/')}}">
-    {{person.name}}</a>
-</div>
+    <div id="lists">
+      <div *ngIf="film.characters.length > 0" style="display: flex; flex-direction: column">
+        <h1>Characters</h1>
+        <div class="showDetails" *ngFor="let person of film.characters">
+          <a routerLink="../../people/{{apiService.getItemId(person.url, 2, '/')}}">
+            {{person.name}}</a>
+          <div>
+          <p><span>Gender:</span> {{person.gender}}</p>
+          <p><span>Birthday:</span> {{person.birth_year}}</p>
+          <p><span>Height:</span> {{person.height}}</p>
+          <p><span>Mass:</span> {{person.mass}}</p>
+        </div>
+        </div>
+      </div>
 
-<div *ngIf="planets && planets.length > 0" style="display: flex; flex-direction: column">
-  <h1>Planets</h1>
-  <a *ngFor="let planet of planets" routerLink="../../planets/{{getItemId(planet.url, 2, '/')}}">
-    {{planet.name}}</a>
-</div>
+      <div *ngIf="film.planets.length > 0" style="display: flex; flex-direction: column">
+        <h1>Planets</h1>
+        <div class="showDetails" *ngFor="let planet of film.planets">
+          <a routerLink="../../planets/{{apiService.getItemId(planet.url, 2, '/')}}">
+            {{planet.name}}</a>
+          <div>
+            <p><span>Climate:</span> {{planet.climate}}</p>
+            <p><span>Gravity:</span> {{planet.gravity}}</p>
+            <p><span>Population:</span> {{planet.population}}</p>
+            <p><span>Terrain:</span> {{planet.terrain}}</p>
+          </div>
+        </div>
+      </div>
 
-<div *ngIf="species && species.length > 0" style="display: flex; flex-direction: column">
-  <h1>Species</h1>
-  <a *ngFor="let specie of species" routerLink="../../species/{{getItemId(specie.url, 2, '/')}}">
-    {{specie.name}}</a>
-</div>
+      <div *ngIf="film.species.length > 0" style="display: flex; flex-direction: column">
+        <h1>Species</h1>
+        <div class="showDetails" *ngFor="let specie of film.species">
+          <a routerLink="../../species/{{apiService.getItemId(specie.url, 2, '/')}}">
+            {{specie.name}}</a>
+          <div>
+            <p><span>Average height:</span> {{specie.average_height}}</p>
+            <p><span>Average lifespan:</span> {{specie.average_lifespan}}</p>
+            <p><span>Classification:</span> {{specie.classification}}</p>
+            <p><span>Designation:</span> {{specie.designation}}</p>
+          </div>
+        </div>
+      </div>
 
-<div *ngIf="starships && starships.length > 0" style="display: flex; flex-direction: column">
-  <h1>Starships</h1>
-  <a *ngFor="let starship of starships" routerLink="../../starships/{{getItemId(starship.url, 2, '/')}}">
-    {{starship.name}}</a>
-</div>
+      <div *ngIf="film.starships.length > 0" style="display: flex; flex-direction: column">
+        <h1>Starships</h1>
+        <div class="showDetails" *ngFor="let starship of film.starships">
+          <a routerLink="../../starships/{{apiService.getItemId(starship.url, 2, '/')}}">
+            {{starship.name}}</a>
+          <div>
+            <p><span>Length:</span> {{starship.length}}</p>
+            <p><span>Manufacturer:</span> {{starship.manufacturer}}</p>
+            <p><span>Model:</span> {{starship.model}}</p>
+            <p><span>Starship class:</span> {{starship.starship_class}}</p>
+          </div>
+        </div>
+      </div>
 
-<div *ngIf="vehicles && vehicles.length > 0" style="display: flex; flex-direction: column">
-  <h1>Vehicles</h1>
-  <a *ngFor="let vehicle of vehicles" routerLink="../../vehicles/{{getItemId(vehicle.url, 2, '/')}}">
-    {{vehicle.name}}</a>
+      <div *ngIf="film.vehicles.length > 0" style="display: flex; flex-direction: column">
+        <h1>Vehicles</h1>
+        <div class="showDetails" *ngFor="let vehicle of film.vehicles">
+          <a routerLink="../../vehicles/{{apiService.getItemId(vehicle.url, 2, '/')}}">
+            {{vehicle.name}}</a>
+          <div>
+            <p><span>Cargo capacity:</span> {{vehicle.cargo_capacity}}</p>
+            <p><span>Length:</span> {{vehicle.length}}</p>
+            <p><span>Manufacturer:</span> {{vehicle.manufacturer}}</p>
+            <p><span>Vehicle class:</span> {{vehicle.vehicle_class}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

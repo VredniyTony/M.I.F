@@ -1,0 +1,28 @@
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+.film {
+  display: flex;
+  align-items: center;
+  margin: 10px 50px;
+}
+
+.film:hover {
+  cursor: pointer;
+  background-color: darksalmon;
+}
+
+.film:active {
+  color: white;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}

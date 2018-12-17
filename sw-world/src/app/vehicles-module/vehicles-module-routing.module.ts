@@ -4,6 +4,7 @@ import {VehiclesListComponent} from './vehicles-list/vehicles-list.component';
 import {CurrentItemResolveService} from '../core/resolvers/current-item-resolve.service';
 import {DetailsComponent} from './details/details.component';
 import {CurrentCategoryResolveService} from '../core/resolvers/current-category-resolve.service';
+import {ResolverService} from "./details/resolver.service";
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
     path: ':item',
     component: DetailsComponent,
     resolve: {
-      details: CurrentItemResolveService
+      details: ResolverService
     }
   }
 ];

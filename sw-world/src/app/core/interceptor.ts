@@ -15,7 +15,7 @@ export class NoopInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
-      timeout(10000),
+      timeout(60000),
       tap(
         ok,
         err => {

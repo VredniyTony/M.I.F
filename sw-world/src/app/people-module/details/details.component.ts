@@ -1,35 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {GetCommonDataService} from '../../core/get-common-data.service';
-
-interface People {
-  details: [{
-    name: string;
-    birth_year: string;
-    gender: string;
-    eye_color: string;
-    hair_color: string;
-    height: number;
-    mass: number;
-    created: string;
-    edited: string;
-    films: [
-      { title: string }
-      ];
-    homeworld: string;
-    skin_color: string;
-    species: [
-      { name: string }
-      ];
-    starships: [
-      { name: string }
-      ];
-    url: string;
-    vehicles: [
-      { name: string }
-      ];
-  }];
-}
+import {People} from './people';
 
 @Component({
   selector: 'app-details',
@@ -38,7 +10,7 @@ interface People {
 })
 export class DetailsComponent implements OnInit {
 
-  people;
+  people: People;
 
   constructor(private route: ActivatedRoute,
               public apiService: GetCommonDataService) {
@@ -49,9 +21,8 @@ export class DetailsComponent implements OnInit {
   }
 
   getItemList() {
-    this.route.data.subscribe((data: People) => {
+    this.route.data.subscribe(data => {
       this.people = data.details;
-      console.log(this.people);
     });
   }
 }

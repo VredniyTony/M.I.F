@@ -1,25 +1,57 @@
-<h1>{{specie.name}}</h1>
-<ul>
-  <li>Average height: {{specie.average_height}}</li>
-  <li>Average lifespan: {{specie.average_lifespan}}</li>
-  <li>Classification: {{specie.classification}}</li>
-  <li>Designation: {{specie.designation}}</li>
-  <li>Eye color: {{specie.eye_colors}}</li>
-  <li>Hair color: {{specie.hair_colors}}</li>
-  <li>Homeworld: <a *ngIf="planet" routerLink="../../planets/{{getItemId(planet.url, 2, '/')}}">
-    {{planet.name}}</a></li>
-  <li>Language: {{specie.language}}</li>
-  <li>Skin color: {{specie.skin_colors}}</li>
-</ul>
+<div id="body">
+  <div id="container">
+    <h1 id="title">{{specie.name}}</h1>
+    <ul>
+      <li>Average height: {{specie.average_height}}</li>
+      <li>Average lifespan: {{specie.average_lifespan}}</li>
+      <li>Classification: {{specie.classification}}</li>
+      <li>Designation: {{specie.designation}}</li>
+      <li>Eye color: {{specie.eye_colors}}</li>
+      <li>Hair color: {{specie.hair_colors}}</li>
+      <li style="display: flex; flex-direction: row;">Homeworld:
+        <div class="showDetails">
+          <a routerLink="../../planets/{{apiService.getItemId(specie.homeworld.url, 2, '/')}}">
+            {{specie.homeworld.name}}</a>
+          <div>
+            <p><span>Climate:</span> {{specie.homeworld.climate}}</p>
+            <p><span>Gravity:</span> {{specie.homeworld.gravity}}</p>
+            <p><span>Population:</span> {{specie.homeworld.population}}</p>
+            <p><span>Terrain:</span> {{specie.homeworld.terrain}}</p>
+          </div>
+        </div>
+      </li>
+      <li>Language: {{specie.language}}</li>
+      <li>Skin color: {{specie.skin_colors}}</li>
+    </ul>
 
-<div *ngIf="films && films.length > 0" style="display: flex; flex-direction: column">
-  <h1>Films</h1>
-  <a *ngFor="let film of films" routerLink="../../films/{{getItemId(film.url, 2, '/')}}">
-    {{film.title}}</a>
-</div>
+    <div id="lists">
+      <div *ngIf="specie.films.length > 0" style="display: flex; flex-direction: column">
+        <h1>Films</h1>
+        <div class="showDetails" *ngFor="let film of specie.films">
+          <a routerLink="../../films/{{apiService.getItemId(film.url, 2, '/')}}">
+            {{film.title}}</a>
+          <div>
+            <p><span>Director:</span> {{film.director}}</p>
+            <p><span>Episode:</span> {{film.episode_id}}</p>
+            <p><span>Producer:</span> {{film.producer}}</p>
+            <p><span>Release date:</span> {{film.release_date}}</p>
+          </div>
+        </div>
+      </div>
 
-<div *ngIf="people && people.length > 0" style="display: flex; flex-direction: column">
-  <h1>People</h1>
-  <a *ngFor="let person of people" routerLink="../../people/{{getItemId(person.url, 2, '/')}}">
-    {{person.name}}</a>
+      <div *ngIf="specie.people.length > 0" style="display: flex; flex-direction: column">
+        <h1>Characters</h1>
+        <div class="showDetails" *ngFor="let person of specie.people">
+          <a routerLink="../../people/{{apiService.getItemId(person.url, 2, '/')}}">
+            {{person.name}}</a>
+          <div>
+            <p><span>Gender:</span> {{person.gender}}</p>
+            <p><span>Birthday:</span> {{person.birth_year}}</p>
+            <p><span>Height:</span> {{person.height}}</p>
+            <p><span>Mass:</span> {{person.mass}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

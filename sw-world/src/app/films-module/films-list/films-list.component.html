@@ -1,9 +1,6 @@
-<div *ngFor="let item of filmsList">
-  <ul>
-    <li>
-      <a [routerLink]="[getItemId(item.url)]">
-        <span>{{item.title}}</span>
-      </a>
-    </li>
-  </ul>
+<div>
+  <div *ngFor="let item of filmsList" [routerLink]="[apiService.getItemId(item.url, 2, '/')]" class="film">
+    <h1>{{item.title}}</h1>
+    <p>Episode: {{item.episode_id}}</p>
+  </div>
 </div>

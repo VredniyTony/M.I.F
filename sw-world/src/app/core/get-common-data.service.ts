@@ -25,7 +25,7 @@ export class GetCommonDataService {
     return this.http.get(this.url + item);
   }
 
-  getData(url) {
+  getData(url, number: number, s: string) {
     return this.http.get(url);
   }
 

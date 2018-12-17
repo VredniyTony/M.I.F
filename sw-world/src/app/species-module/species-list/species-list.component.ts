@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {GetCommonDataService} from '../../core/get-common-data.service';
 
 @Component({
   selector: 'app-species-list',
@@ -14,14 +15,15 @@ export class SpeciesListComponent implements OnInit {
   loader;
 
   constructor(private route: ActivatedRoute,
-              public router: Router) {
+              private router: Router,
+              public apiService: GetCommonDataService) {
   }
 
   ngOnInit() {
-    this.getItemsList();
+    this.getItemList();
   }
 
-  getItemsList() {
+  getItemList() {
     this.route.data.subscribe(data => {
       this.next = data.species.next;
       this.previous = data.species.previous;
@@ -30,13 +32,8 @@ export class SpeciesListComponent implements OnInit {
     });
   }
 
-  getItemId(item, index, separator) {
-    const id = String(item).split(separator);
-    return id[id.length - index];
-  }
-
   update(url) {
-    const query = this.getItemId(url, 1, '=');
+    const query = this.apiService.getItemId(url, 1, '=');
     this.loader = false;
     this.router.navigate(['species'], {queryParams: {page: query}});
   }

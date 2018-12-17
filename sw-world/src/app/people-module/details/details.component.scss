@@ -1,0 +1,96 @@
+@media only screen and (max-width: 600px) {
+  #lists {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #container {
+    width: 95%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #lists {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  #container {
+    width: 95%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  #container {
+    width: 80%;
+  }
+
+  #lists {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #lists > div {
+    margin: 10px;
+  }
+}
+
+#body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title {
+  align-self: center;
+}
+
+#openingCrawl {
+  text-align: justify;
+}
+
+.showDetails {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.showDetails > div {
+  display: none;
+  position: absolute;
+  background-color: white;
+  margin-top: -100px;
+  padding: 10px;
+  border-radius: 20px;
+  z-index: 1;
+  bottom: 100%;
+  margin-left: 10px;
+}
+
+.showDetails > div p {
+  font-size: 15px;
+  margin: 0;
+}
+
+.showDetails > div p span {
+  font-weight: bold;
+}
+
+.showDetails {
+  text-decoration: none;
+}
+
+.showDetails > a {
+  color: black;
+  text-decoration: none;
+}
+
+.showDetails > a:hover {
+  color: brown;
+  cursor: pointer;
+}
+
+.showDetails > a:hover + div {
+  display: block;
+}

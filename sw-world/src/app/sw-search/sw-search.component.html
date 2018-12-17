@@ -1,8 +1,9 @@
-<form [formGroup]="formData" (submit)="onSubmit(formData)">
-  <label>
-    <input type="text" formControlName="item">
-    <button type="submit" [disabled]="!formData.valid">Submit</button>
-  </label>
-</form>
-<p *ngIf="results && results === optionsData.length">No results</p>
-
+<div>
+  <form [formGroup]="formData" (submit)="onSubmit(formData)">
+    <label>
+      <input type="text" formControlName="item">
+      <button type="submit" [disabled]="!formData.valid">Submit</button>
+    </label>
+  </form>
+  <p *ngIf="results && results === optionsData.length">No results</p>
+</div>

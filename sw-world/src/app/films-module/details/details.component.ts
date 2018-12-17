@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {GetCommonDataService} from '../../core/get-common-data.service';
 import {Film} from './film';
 
 @Component({
@@ -11,7 +12,8 @@ export class DetailsComponent implements OnInit {
 
   film: Film;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+              public apiService: GetCommonDataService) {
   }
 
   ngOnInit() {
@@ -21,7 +23,6 @@ export class DetailsComponent implements OnInit {
   getItemsList() {
     this.route.data.subscribe((data) => {
       this.film = data.details;
-      console.log(this.film);
     });
   }
 }

@@ -1,0 +1,53 @@
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+.people {
+  display: flex;
+  align-items: center;
+  margin: 10px 50px;
+}
+
+.people:hover {
+  cursor: pointer;
+  background-color: darksalmon;
+}
+
+.people:active {
+  color: white;
+}
+
+.navigate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navigate > button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  text-decoration: underline;
+  overflow: hidden;
+  outline:none;
+  cursor: pointer;
+}
+
+.navigate > button:hover {
+  color: brown;
+}
+
+.navigate > button:active {
+  color: white;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
