@@ -1,7 +1,7 @@
 <div>
   <form [formGroup]="formData" (submit)="onSubmit(formData)">
     <label>
-      <input type="text" formControlName="item">
+      <input type="text" formControlName="item" placeholder="Search">
       <button type="submit" [disabled]="!formData.valid">Submit</button>
     </label>
   </form>
