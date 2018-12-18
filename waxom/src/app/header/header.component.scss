@@ -1,0 +1,62 @@
+@media only screen and (min-width: 992px) {
+  .body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    z-index: 10000;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1170px;
+  }
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo > a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo > a > h1 {
+  font-family: Raleway, serif;
+  color: #ffffff;
+  font-size: 34px; /* Approximation due to font substitution */
+  font-weight: 400;
+  text-align: right;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.links > a {
+  font-family: Montserrat, serif;
+  color: #ffffff;
+  font-size: 14px; /* Approximation due to font substitution */
+  font-weight: 300;
+  text-align: left;
+  margin: 10px;
+  text-decoration: none;
+}
+
+.links > div {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+}
+
+.links > div > a {
+  margin: 10px;
+}

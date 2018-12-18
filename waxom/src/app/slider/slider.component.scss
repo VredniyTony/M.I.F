@@ -1,0 +1,47 @@
+.carousel-img {
+  display: block;
+  width: 100%;
+}
+
+.title1 {
+  font-family: Raleway, serif;
+  color: #ffffff;
+  font-size: 36px; /* Approximation due to font substitution */
+  font-weight: 500;
+  text-align: center;
+}
+
+.title2 {
+  font-family: Raleway, serif;
+  color: #ffffff;
+  font-size: 52px; /* Approximation due to font substitution */
+  font-weight: 700;
+  text-align: center;
+}
+
+.description {
+  font-family: Montserrat, serif;
+  color: #ffffff;
+  font-size: 16px; /* Approximation due to font substitution */
+  font-weight: 300;
+  line-height: 24px; /* Approximation due to font substitution */
+  text-align: center;
+}
+
+.button {
+  border: none;
+  border-radius: 3px;
+  background-color: #998675;
+  width: 170px;
+  height: 53px;
+}
+
+.button > p {
+  font-family: Raleway, serif;
+  color: #ffffff;
+  font-size: 14px; /* Approximation due to font substitution */
+  font-weight: 700;
+  line-height: 23px; /* Approximation due to font substitution */
+  text-align: center;
+  margin: 0;
+}
